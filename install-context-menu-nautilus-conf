@@ -1,0 +1,17 @@
+#!/bin/bash
+set -euo pipefail
+
+configFile="$1"
+extensionName="context-menu-nautilus"
+configDir="$HOME/.config/${extensionName}"
+configFileName="$(basename "$configFile")"
+
+if [ ! -d "$configDir" ]; then
+    mkdir "$configDir"
+fi
+
+echo "Install '$configFile' ..."
+cp "$configFile" "$configDir/$configFileName"
+
+echo 'Restarting nautilus...'
+nautilus -q
