@@ -6,6 +6,8 @@ This repo provides a `ini` configs files extension for Nautilus.
 
 ## Install Extension
 
+If not the first time that you install this app on your PC, please, run uninstall first.
+
 ```
 wget -qO- https://raw.githubusercontent.com/zecarneiro/context-menu-nautilus/master/install.sh | bash
 ```

@@ -60,24 +60,25 @@ fi
 
 if [ ! -d "$CONFIG_DIR" ]; then
     echo "Creating directory: $CONFIG_DIR"
-    mkdir "$CONFIG_DIR"
+    mkdir -p "$CONFIG_DIR"
 fi
 
 if [ ! -d "$INSTALLER_CONFIG_DIR" ]; then
     echo "Creating directory: $INSTALLER_CONFIG_DIR"
-    mkdir "$INSTALLER_CONFIG_DIR"
+    mkdir -p "$INSTALLER_CONFIG_DIR"
+fi
+
+if [ ! -d "$INSTALL_PATH" ]; then
+    echo "Creating directory: $INSTALL_PATH"
+    mkdir -p "$INSTALL_PATH"
 fi
 
 if [ "$TYPE_INSTALL" = "local" ]; then
-    eval "${PWD}/uninstall.sh"
     echo "Install..."
     cp "${PWD}/${EXTENSION_FILE_NAME}" "${EXTENSION_FILE}"
     cp "${PWD}/install-context-menu-nautilus-conf" "$INSTALLER_CONFIG"
     chmod +x "$INSTALLER_CONFIG"
 else
-    # Uninstall
-    wget -qO- https://raw.githubusercontent.com/zecarneiro/context-menu-nautilus/master/uninstall.sh | bash
-
     echo "Downloading and install newest version..."
     wget -q -O "${EXTENSION_FILE}" https://raw.githubusercontent.com/zecarneiro/context-menu-nautilus/master/context-menu-nautilus.py
     wget -q -O "$INSTALLER_CONFIG" https://raw.githubusercontent.com/zecarneiro/context-menu-nautilus/master/install-context-menu-nautilus-conf
